@@ -1,10 +1,11 @@
 {
-  "name": "plasticosrefine",
+  "name": "frecicar",
   "version": "1.0.0",
-  "description": "proyecto diploma",
+  "description": "proyecto campo y diploma",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.html"
   },
   "author": "Palonsky&Pena",
   "license": "ISC",
@@ -15,7 +16,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "2.9.4",
     "datatables.net-bs4": "1.10.19",
-    "jquery": "^3.5.0",
+    "jquery": "3.4.1",
     "jquery.easing": "^1.4.1"
   },
   "devDependencies": {
