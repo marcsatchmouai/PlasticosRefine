@@ -6,14 +6,39 @@ app.config(['$routeProvider', function($routeProvider){
             templateUrl: '/components/default/default.html'
         })
 
-        // .when('/home', {
-        //     templateUrl: './views/components/shared/home.html'
+        .when('/gestionarUsuarios', {
+            templateUrl: '/components/login/gestionarUsuarios/gestionarUsuarios.html'
             
-        // })
-        // .when("/GestionarOrdenesCompras", {
-        //     templateUrl: "views/pages/GestionarOrdenesCompras.html"
-        //     //controller: 'GestionarOrdenesComprasCtrl'
-        // })
+        })
+        .when('/registrarUsuarios', {
+            templateUrl: '/components/login/gestionarUsuarios/registrarUsuario.html'
+            
+        })
+        .when("/editarUsuario", {
+            templateUrl: 'components/login/gestionarUsuarios/editarUsuario.html'
+            //controller: 'GestionarOrdenesComprasCtrl'
+        })
+        .when("/asignarGrupos", {
+            templateUrl: 'components/login/gestionarUsuarios/asignarGrupos.html'
+            //controller: 'GestionarOrdenesComprasCtrl'
+        })
+
+        .when('/gestionarGrupos', {
+            templateUrl: '/components/login/gestionarGrupos/gestionarGrupos.html'
+            
+        })
+        .when('/agregarGrupo', {
+            templateUrl: '/components/login/gestionarGrupos/agregarGrupo.html'
+            
+        })
+        .when("/editarGrupo", {
+            templateUrl: 'components/login/gestionarGrupos/editarGrupo.html'
+            //controller: 'GestionarOrdenesComprasCtrl'
+        })
+        .when("/asignarAcciones", {
+            templateUrl: 'components/login/gestionarGrupos/asignarAcciones.html'
+            //controller: 'GestionarOrdenesComprasCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });
