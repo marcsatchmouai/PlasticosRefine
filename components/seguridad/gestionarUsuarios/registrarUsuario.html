@@ -1,0 +1,56 @@
+<div class="col-lg-7">
+  <div class="p-5">
+    <div class="text-center">
+      <h1 class="h4 text-gray-900 mb-4">Registrar Usuario</h1>
+    </div>
+    <form class="userForm" name="userForm" novalidate>
+      <div class="form-group">
+        <input type="text" class="form-control" id="user" name="Usuario" placeholder="Usuario" ng-model="user.Usuario" ng-model-options="{ updateOn: 'blur' }"  required>
+        <span class="messages" ng-show="userForm.$submitted || userForm.Usuario.$touched">
+          <span ng-show="userForm.Usuario.$error.required">Campo obligatorio.</span>
+        </span>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <input type="text" class="form-control" id="name" name="Nombre" placeholder="Nombre" ng-model="user.Nombre" required>
+          <span class="messages" ng-show="userForm.$submitted || userForm.Nombre.$touched">
+            <span ng-show="userForm.Nombre.$error.required">Campo obligatorio.</span>
+          </span>
+          
+        </div>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="lastName" name="Apellido" placeholder="Apellido" ng-model="user.Apellido" required>
+          <span class="messages" ng-show="userForm.$submitted || userForm.Apellido.$touched">
+            <span ng-show="userForm.Apellido.$error.required">Campo obligatorio.</span>
+          </span>
+          
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" id="email" name="Email" placeholder="Email" ng-model="user.Email" ng-model-options="{ updateOn: 'blur' }" required>
+        <span class="messages" ng-show="userForm.$submitted || userForm.Email.$touched">
+          <span ng-show="userForm.Email.$error.required">Campo obligatorio.</span>
+          <span ng-show="userForm.Email.$error.email">Formato de email incorrecto.</span>
+        </span>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" ng-model="user.Password" ng-model-options="{ updateOn: 'blur' }" required>
+          <span class="messages" ng-show="userForm.$submitted || userForm.Password.$touched">
+            <span ng-show="userForm.Password.$error.required">Campo obligatorio.</span>
+          </span>
+        </div>
+        <div class="col-sm-6">
+          <input type="password" class="form-control" id="PasswordRepeat" name="PasswordRepeat"  placeholder="Repetir Password" ng-model="user.PasswordRepeat" ng-model-options="{ updateOn: 'blur' }" required>
+          <span class="messages" ng-show="userForm.$submitted || userForm.PasswordRepeat.$touched">
+            <span ng-show="userForm.PasswordRepeat.$error.required">Campo obligatorio.</span>
+          </span>
+          
+        </div>
+      </div>
+      <input type="submit"  class="btn btn-primary btn-user btn-block" ng-click="AgregarUsuario()" value="Registrar" ng-disabled="userForm.$invalid" />
+      <input type="reset"  class="btn btn-primary btn-user btn-block" ng-click="reset(userForm)" value="Limpiar" />
+    </form>
+    <!-- <pre>user = {{user | json}}</pre> -->
+  </div>
+</div>

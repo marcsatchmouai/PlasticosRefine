@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" ng-app="frecicarApp">
+<html lang="es">
 
 <head>
 
@@ -15,18 +15,21 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/home.css" rel="stylesheet">
+  <link href="node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" type="text/css">
 
   <script src="node_modules/angular/angular.js"></script>
   <script src="node_modules/angular-route/angular-route.js"></script>
+  <script src="node_modules/angular-cookies/angular-cookies.js"></script>
+  <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
   
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link href="node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-  <script src="homeController.js"></script>
+  
 </head>
 
-<body id="page-top" ng-controller="homeCtrl">
-  <div id="wrapper">
+<body id="page-top" ng-app="app">
+  <div id="wrapper" ng-controller="homeCtrl">
     
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" 
@@ -62,20 +65,27 @@
   </a>
 
   <!-- Logout Modal-->
-  <!-- <div 
+  <div 
       class="modal fade" id="logoutModal" tabindex="-1" role="dialog" 
       aria-labelledby="exampleModalLabel" 
       aria-hidden="true" 
-      ng-include src="'components/logoutModal.html'">
-  </div> -->
+      ng-include src="'components/shared/logoutModal.html'">
+  </div>
 
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
   <script src="node_modules/jquery.easing/jquery.easing.min.js"></script>
 
-  <script src="home.js"></script>
-
+  <script src="js/app.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/sweetAlert.js"></script>
+  <script src="js/homeCtrl.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/routeProvider.js"></script>
+  <script src="components/seguridad/gestionarUsuarios/registrarUsuarioCtrl.js"></script>
+  <script src="components/seguridad/gestionarUsuarios/gestionarUsuariosCtrl.js"></script>
   <script src="node_modules/chart.js/dist/Chart.min.js"></script>
 
   <!-- <script src="js/demo/chart-area-demo.js"></script>
