@@ -1,0 +1,93 @@
+<div class="col-lg-7">
+  <div class="p-5">
+    <div class="text-center">
+      <h1 class="h4 text-gray-900 mb-4">Gestionar Perfiles</h1>
+    </div>
+    <div ng-repeat="grupo in grupos">
+      <div id="acc{{grupo.nombre}}">
+        <div class="card">
+          <div class="card-header" id="heading{{grupo.nombre}}">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link"
+                data-toggle="collapse"
+                data-target="#{{grupo.nombre}}"
+                aria-expanded="false"
+                aria-controls="{{grupo.nombre}}"
+                
+              >
+                Grupo - {{grupo.nombre}}
+              </button>
+            </h5>
+          </div>
+
+          <div
+            id="{{grupo.nombre}}"
+            class="collapse"
+            aria-labelledby="heading{{grupo.nombre}}"
+            data-parent="#acc{{grupo.nombre}}"
+          >
+            <!-- CARD BODY -->
+            <div class="card-body">
+              <div
+                ng-repeat="formulario in formularios"
+              >
+                <div id="acc{{formulario.nombre}}">
+                  <div class="card">
+                    <div class="card-header" id="heading{{formulario.nombre}}">
+                      <h5 class="mb-0">
+                        <input
+                          id="id-{formulario.nombre}}"
+                          class="align-middle"
+                          type="checkbox"
+                          ng-checked=""
+                          value=""
+                        />
+                        <button
+                          class="btn btn-link"
+                          data-toggle="collapse"
+                          data-target="#{{formulario.nombre}}"
+                          aria-expanded="false"
+                          aria-controls="{{formulario.nombre}}"
+                        >
+                          Permisos Formulario - {{formulario.nombre}}
+                        </button>
+                      </h5>
+                    </div>
+
+                    <div
+                      id="{{formulario.nombre}}"
+                      class="collapse"
+                      aria-labelledby="heading{{formulario.nombre}}"
+                      data-parent="#acc{{formulario.nombre}}"
+                    >
+                      <div class="card-body">
+                        <div class="list-group">
+                          <label
+                            class="list-group-item pl-5"
+                            ng-repeat="permiso in permisos"
+                          >
+                            <input
+                              id="id-{permiso.nombre}}"
+                              class="form-check-input me-1"
+                              type="checkbox"
+                              ng-checked=""
+                              value=""
+                            />
+                            {{permiso.nombre}}
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="" class="btn btn-primary btn-user btn-block"> Asignar </a>
+  </div>
+</div>

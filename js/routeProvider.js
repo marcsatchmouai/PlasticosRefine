@@ -33,9 +33,9 @@ app.config(['$routeProvider', function($routeProvider){
             templateUrl: 'components/seguridad/gestionarGrupos/editarGrupo.html',
             controller: 'editarGrupoCtrl'
         })
-        .when("/asignarAcciones", {
-            templateUrl: 'components/seguridad/gestionarGrupos/asignarAcciones.html',
-            controller: 'asignarAccionesCtrl'
+        .when("/gestionarPerfiles", {
+            templateUrl: 'components/seguridad/gestionarGrupos/gestionarPerfiles.html',
+            controller: 'gestionarPerfilesCtrl'
         })
         .otherwise({
             redirectTo: '/'

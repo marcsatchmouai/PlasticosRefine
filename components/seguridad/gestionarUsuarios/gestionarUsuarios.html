@@ -16,6 +16,7 @@
               <th>Nombre</th>
               <th>e-mail</th>
               <th>Estado</th>
+              <th>Grupo</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -25,6 +26,7 @@
               <th>Nombre</th>
               <th>e-mail</th>
               <th>Estado</th>
+              <th>Grupo</th>
               <th>Acciones</th>
             </tr>
           </tfoot>
@@ -34,15 +36,13 @@
               <td>{{ user.nombreApellido }}</td>
               <td>{{ user.email }}</td>
               <td>{{ user.habilitado | estado }}</td>
+              <td>{{ user.grupos[0].nombre }}</td>
               <td>
                 <a href="#!editarUsuario" class="btn">
-                  <span class="bi-pencil" title="Editar Usuario" role="img" aria-label="Pencil"></span>
-                </a>
-                <a href="#!asignarGrupos" title="Asignar Grupos" class="btn">
-                  <span class="bi bi-people" role="img" aria-label="People"></span>
+                  <span class="bi-pencil" title="Editar Usuario"  ng-click="EditarUsuario(user)" role="img" aria-label="Pencil"></span>
                 </a>
                 <a href="" title="Resetear Contraseña" class="btn">
-                  <span class="bi bi-bootstrap-reboot" role="img" aria-label="Reset"></span>
+                  <span class="bi bi-bootstrap-reboot" ng-click="ResetearPassword(user)" role="img" aria-label="Reset"></span>
                 </a>
                 <a href="" title="Eliminar Usuario" ng-click="EliminarUsuario(user)" class="btn">
                   <span class="bi-trash" role="img" aria-label="Trash"></span>

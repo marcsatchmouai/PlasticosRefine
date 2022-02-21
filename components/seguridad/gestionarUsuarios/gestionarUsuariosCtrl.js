@@ -1,160 +1,149 @@
-app.controller('gestionarUsuariosCtrl', ['$scope', '$window', '$http', 'settings', '$cookies', function($scope, $window, $http, settings, $cookies){
+app.controller("gestionarUsuariosCtrl", [
+  "$scope",
+  "$window",
+  "$http",
+  "settings",
+  "$cookies",
+  "Fact",
+  function ($scope, $window, $http, settings, $cookies, Fact) {
+    $scope.userGest  = Fact
 
-    $scope.ConsultarUsuarios = function() {
+    $scope.user = {
+      Usuario: "",
+      Email: "",
+      Nombre: "",
+      Apellido: "",
+      Grupos: [],
+      Habilitado: true
+    };
 
-        $http({
-            method: 'GET',
-            url: settings.webApiBaseUrl + 'api/Seguridad/GestionarUsuarios/ConsultarUsuario',
-            headers: settings.headers
-        }).then(function successCallback(response) {
-            $scope.users = response.data
-
-        }, function errorCallback(response) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error al intentar consultar usuarios',
-            })
-        });
-    }
+    $scope.ConsultarUsuarios = function () {
+      $scope.users = null
+      $http({
+        method: "GET",
+        url:
+          settings.webApiBaseUrl +
+          "api/Seguridad/GestionarUsuarios/ConsultarUsuarios",
+        headers: settings.headers,
+      }).then(
+        function successCallback(response) {
+          $scope.users = response.data;
+          console.log('user gestionar', $scope.users)
+        },
+        function errorCallback(response) {
+          Swal.fire({
+            icon: "error",
+            title: "Error al intentar consultar usuarios",
+          });
+        }
+      );
+    };
 
     $scope.ConsultarUsuarios();
 
-    $scope.BuscarUsuario = function() {
+    
 
-        var request={ 
-            habilitado: true, 
-            nombreUsuario: $scope.user.Usuario,
-            email: $scope.user.Email,
-            nombreApellido: $scope.user.Nombre + ' ' + $scope.user.Apellido,
-            activo: true 
-        };
+    $scope.EliminarUsuario = function (user) {
+      console.log("user", user);
+      var request = {
+        habilitado: true,
+        nombreUsuario: user.nombreUsuario,
+        email: user.email,
+        nombreApellido: user.nombreApellido,
+        activo: true,
+      };
 
-        $http({
-            method: 'POST',
-            url: settings.webApiBaseUrl + 'api/Seguridad/GestionarUsuarios/BuscarUsuario',
-            data: request,
-            headers: settings.headers
-        }).then(function successCallback(response) {
-            console.log(response)
-            
-        }, function errorCallback(response) {
+      console.log("request", request);
+
+      $http({
+        method: "DELETE",
+        url:
+          settings.webApiBaseUrl +
+          "api/Seguridad/GestionarUsuarios/EliminarUsuario",
+        data: request,
+        headers: settings.headers,
+      }).then(
+        function successCallback(response) {
+          console.log(response);
+          if (response.data) {
+            $scope.ConsultarUsuarios();
             Swal.fire({
-                icon: 'error',
-                title: 'Error al intentar buscar usuario',
-            })
-        });
-    }
-
-    $scope.ConsultarGrupos = function() {
-
-        $http({
-            method: 'GET',
-            url: settings.webApiBaseUrl + 'api/Seguridad/GestionarUsuarios/ConsultarGrupos',
-            headers: settings.headers
-        }).then(function successCallback(response) {
-            console.log(response)
-            
-        }, function errorCallback(response) {
+              position: "top-end",
+              icon: "success",
+              title: "Usuario eliminado",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          } else {
             Swal.fire({
-                icon: 'error',
-                title: 'Error al intentar consultar grupos',
-            })
-        });
-    }
+              icon: "warning",
+              title: "El usuario no existe",
+            });
+          }
+        },
+        function errorCallback(response) {
+          Swal.fire({
+            icon: "error",
+            title: "Error al intentar eliminar usuario",
+          });
+        }
+      );
+    };
 
-    $scope.EliminarUsuario = function(user) {
-        console.log('entro al eliminar usuario')
-        var request={ 
-            habilitado: true, 
-            nombreUsuario: user.Usuario,
-            email: user.Email,
-            nombreApellido: user.Nombre + ' ' + user.Apellido,
-            activo: true 
-        };
+    $scope.EditarUsuario = function (user) {
+        $scope.userGest.User = user;
+    };
 
-        $http({
-            method: 'DELETE',
-            url: settings.webApiBaseUrl + 'api/Seguridad/GestionarUsuarios/EliminarUsuario',
-            data: request,
-            headers: settings.headers
-        }).then(function successCallback(response) {
-            console.log(response)
-            
-        }, function errorCallback(response) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error al intentar eliminar usuario',
-            })
-        });
-    }
+    $scope.FiltrarUsuarios = function () {
+      var request = {};
 
-    $scope.FiltrarUsuarios = function() {
+      $http({
+        method: "GET",
+        url:
+          settings.webApiBaseUrl +
+          "api/Seguridad/GestionarUsuarios/FiltrarUsuario",
+        data: request,
+        headers: settings.headers,
+      }).then(
+        function successCallback(response) {
+          console.log(response);
+        },
+        function errorCallback(response) {
+          Swal.fire({
+            icon: "error",
+            title: "Error al intentar filtrar usuario",
+          });
+        }
+      );
+    };
 
-        var request={ 
-             
-        };
-
-        $http({
-            method: 'GET',
-            url: settings.webApiBaseUrl + 'api/Seguridad/GestionarUsuarios/FiltrarUsuario',
-            data: request,
-            headers: settings.headers
-        }).then(function successCallback(response) {
-            console.log(response)
-            
-        }, function errorCallback(response) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error al intentar filtrar usuario',
-            })
-        });
-    }
-
-    $scope.ModificarUsuario = function() {
-
-        var request={ 
-            habilitado: true, 
-            nombreUsuario: $scope.user.Usuario,
-            email: $scope.user.Email,
-            nombreApellido: $scope.user.Nombre + ' ' + $scope.user.Apellido,
-            activo: true 
-        };
-
-        $http({
-            method: 'PUT',
-            url: settings.webApiBaseUrl + 'api/Seguridad/GestionarUsuarios/ModificarUsuario',
-            data: request,
-            headers: settings.headers
-        }).then(function successCallback(response) {
-            console.log(response)
-            
-        }, function errorCallback(response) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error al intentar modificar usuario',
-            })
-        });
-    }
-
-    $scope.ResetearPassword = function() {
-
-        var request={ 
-             
-        };
-
-        $http({
-            method: 'GET',
-            url: settings.webApiBaseUrl + 'api/Seguridad/GestionarUsuarios/ResetearPassword',
-            data: request,
-            headers: settings.headers
-        }).then(function successCallback(response) {
-            console.log(response)
-            
-        }, function errorCallback(response) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error al intentar resetear clave',
-            })
-        });
-    }
-}]);
+    $scope.ResetearPassword = function (user) {
+      console.log(user.email);
+      $http({
+        method: "GET",
+        url:
+          settings.webApiBaseUrl +
+          "api/Seguridad/GestionarUsuarios/ResetearPassword",
+        params: {usuarioMail: user.email},
+        headers: settings.headers,
+      }).then(
+        function successCallback(response) {
+          console.log(response);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Contraseña reseteada",
+            text: 'Se envió un correo con la nueva contraseña',
+            showConfirmButton: true,
+          });
+        },
+        function errorCallback(response) {
+          Swal.fire({
+            icon: "error",
+            title: "Error al intentar resetear clave",
+          });
+        }
+      );
+    };
+  },
+]);

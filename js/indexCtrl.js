@@ -17,7 +17,6 @@ app.controller('appSecurityCtrl', ['$scope', '$window', '$http', 'settings', '$c
             data: request,
             headers: settings.headers
         }).then(function successCallback(response) {
-            console.log(response)
             switch (response.data) {
                 case 1:
                     //PasswordErroneo
