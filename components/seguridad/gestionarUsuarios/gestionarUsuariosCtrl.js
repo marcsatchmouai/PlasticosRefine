@@ -7,7 +7,6 @@ app.controller("gestionarUsuariosCtrl", [
   "Fact",
   function ($scope, $window, $http, settings, $cookies, Fact) {
     $scope.userGest  = Fact
-
     $scope.user = {
       Usuario: "",
       Email: "",
@@ -41,10 +40,7 @@ app.controller("gestionarUsuariosCtrl", [
 
     $scope.ConsultarUsuarios();
 
-    
-
     $scope.EliminarUsuario = function (user) {
-      console.log("user", user);
       var request = {
         habilitado: true,
         nombreUsuario: user.nombreUsuario,
@@ -52,8 +48,6 @@ app.controller("gestionarUsuariosCtrl", [
         nombreApellido: user.nombreApellido,
         activo: true,
       };
-
-      console.log("request", request);
 
       $http({
         method: "DELETE",
@@ -64,7 +58,6 @@ app.controller("gestionarUsuariosCtrl", [
         headers: settings.headers,
       }).then(
         function successCallback(response) {
-          console.log(response);
           if (response.data) {
             $scope.ConsultarUsuarios();
             Swal.fire({
@@ -92,6 +85,7 @@ app.controller("gestionarUsuariosCtrl", [
 
     $scope.EditarUsuario = function (user) {
         $scope.userGest.User = user;
+        console.log("$scope.userGest.User ", $scope.userGest.User );
     };
 
     $scope.FiltrarUsuarios = function () {

@@ -3,39 +3,53 @@
     <div class="text-center">
       <h1 class="h4 text-gray-900 mb-4">Editar Grupo</h1>
     </div>
-    <form class="group">
-        <div class="form-group">
-            <input
-                type="text"
-                class="form-control"
-                id="groupId"
-                placeholder="Codigo Grupo"
-            />
-        </div>
-        <div class="form-group">
-            <input
-                type="text"
-                class="form-control"
-                id="decription"
-                placeholder="Descripcion"
-            />
-        </div>
-        <div class="form-group input-group mb-3">
-            <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">
-                Estado
-            </label>
-            </div>
-            <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Seleccionar...</option>
-                <option value="1">Activo</option>
-                <option value="2">Inactivo</option>
-            </select>
-        </div>
+    <form class="groupForm" name="groupForm" novalidate>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="groupId"
+          placeholder="Nombre Grupo"
+          ng-model="group.Nombre"
+          ng-model-options="{ updateOn: 'blur' }"
+          required
+        />
+        <span
+          class="messages"
+          ng-show="groupForm.$submitted || groupForm.Nombre.$touched"
+        >
+          <span ng-show="groupForm.Nombre.$error.required"
+            >Campo obligatorio.</span
+          >
+        </span>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="decription"
+          placeholder="Descripcion"
+          ng-model="group.Descripcion"
+          ng-model-options="{ updateOn: 'blur' }"
+          required
+        />
+      </div>
+      <span
+        class="messages"
+        ng-show="groupForm.$submitted || groupForm.DescripcionDescripcion.$touched"
+      >
+        <span ng-show="groupForm.Descripcion.$error.required"
+          >Campo obligatorio.</span
+        >
+      </span>
 
-        <a href="login.html" class="btn btn-primary btn-user btn-block">
-            Modificar
-        </a>
+      <input
+        type="submit"
+        class="btn btn-primary btn-user btn-block"
+        ng-click="ModificarGrupo()"
+        value="Modificar"
+        ng-disabled="groupForm.$invalid"
+      />
     </form>
   </div>
 </div>

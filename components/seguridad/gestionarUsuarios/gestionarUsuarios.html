@@ -1,5 +1,4 @@
 <div class="container-fluid">
-
   <h1 class="h3 mb-2 text-gray-800">Gestionar Usuarios</h1>
   <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
@@ -9,7 +8,12 @@
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
           <thead>
             <tr>
               <th>Usuario</th>
@@ -39,12 +43,28 @@
               <td>{{ user.grupos[0].nombre }}</td>
               <td>
                 <a href="#!editarUsuario" class="btn">
-                  <span class="bi-pencil" title="Editar Usuario"  ng-click="EditarUsuario(user)" role="img" aria-label="Pencil"></span>
+                  <span
+                    class="bi-pencil"
+                    title="Editar Usuario"
+                    ng-click="EditarUsuario(user)"
+                    role="img"
+                    aria-label="Pencil"
+                  ></span>
                 </a>
                 <a href="" title="Resetear Contraseña" class="btn">
-                  <span class="bi bi-bootstrap-reboot" ng-click="ResetearPassword(user)" role="img" aria-label="Reset"></span>
+                  <span
+                    class="bi bi-bootstrap-reboot"
+                    ng-click="ResetearPassword(user)"
+                    role="img"
+                    aria-label="Reset"
+                  ></span>
                 </a>
-                <a href="" title="Eliminar Usuario" ng-click="EliminarUsuario(user)" class="btn">
+                <a
+                  href=""
+                  title="Eliminar Usuario"
+                  ng-click="EliminarUsuario(user)"
+                  class="btn"
+                >
                   <span class="bi-trash" role="img" aria-label="Trash"></span>
                 </a>
               </td>

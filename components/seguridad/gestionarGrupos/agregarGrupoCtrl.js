@@ -1,4 +1,4 @@
-app.controller("registrarUsuarioCtrl", [
+app.controller("agregarGrupoCtrl", [
   "$scope",
   "$window",
   "$http",
@@ -7,62 +7,42 @@ app.controller("registrarUsuarioCtrl", [
   "GruposFact",
   "consultarGruposService",
   function ($scope, $window, $http, settings, $cookies, GruposFact, consultarGruposService) {
-    $scope.user = {};
-
-    $scope.reset = function (form) {
-      $scope.user = {};
-      if (form) {
-        form.$setPristine();
-        form.$setUntouched();
-      }
-    };
-
-    $scope.reset();
-
     $scope.consultarGruposService = function() {
       consultarGruposService.getGrupos()
     }
-    $scope.consultarGruposService()
+    
+    
 
-    $scope.grupos = GruposFact.grupos;
-
-    $scope.AgregarUsuario = function () {
-      if ($scope.user.Usuario.indexOf(" ") == -1) {
+    $scope.AgregarGrupo = function () {
+      if ($scope.group.Nombre.indexOf(" ") == -1) {
         var request = {
-          habilitado: true,
-          nombreUsuario: $scope.user.Usuario,
-          email: $scope.user.Email,
-          nombreApellido: $scope.user.Nombre + " " + $scope.user.Apellido,
-          grupos: [
-            {
-              nombre: $scope.user.grupo.nombre,
-              descripcion: $scope.user.grupo.descripcion,
-            },
-          ],
-          activo: false,
+          nombre: $scope.group.Nombre,
+          descripcion: $scope.group.Descripcion,
         };
         $http({
           method: "POST",
           url:
             settings.webApiBaseUrl +
-            "api/Seguridad/GestionarUsuarios/AgregarUsuario",
+            "api/Seguridad/GestionarGrupos/AgregarGrupo",
           data: request,
           headers: settings.headers,
         }).then(
           function successCallback(response) {
             if (response.data == true) {
+              $scope.consultarGruposService()
+              //$scope.groups = GruposFact.grupos;
               Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Usuario registrado",
+                title: "Grupo agregado",
                 showConfirmButton: false,
                 timer: 2000,
               });
-              $window.location.href = "#!gestionarUsuarios";
+              $window.location.href = "#!gestionarGrupos";
             } else {
               Swal.fire({
                 icon: "warning",
-                title: "El usuario ya existe",
+                title: "El grupo ya existe",
               });
             }
           },
@@ -76,7 +56,7 @@ app.controller("registrarUsuarioCtrl", [
       } else {
         Swal.fire({
           icon: "warning",
-          title: "No esta permitido dejar espacios en el nombre de usuario",
+          title: "No esta permitido dejar espacios en el nombre del grupo",
         });
       }
     };

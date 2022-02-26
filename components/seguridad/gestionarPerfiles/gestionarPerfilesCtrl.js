@@ -4,24 +4,8 @@ app.controller("gestionarPerfilesCtrl", [
   "$http",
   "settings",
   "$cookies",
-  "Fact",
-  "GruposFact",
-  function ($scope, $window, $http, settings, $cookies, Fact, GruposFact) {
-    $scope.perfilModel = [
-        {
-            formularios: [
-                {
-                    permisos: [],
-                    descripcion: "",
-                    nombre: ""
-                }
-            ],
-            grupo: {
-                descripcion: "",
-                nombre: ""
-            }
-        }
-    ]
+  function ($scope, $window, $http, settings, $cookies) {
+    
 
     $scope.ConsultarFormularios = function () {
       $http({
@@ -104,10 +88,10 @@ app.controller("gestionarPerfilesCtrl", [
           headers: settings.headers,
         }).then(
           function successCallback(response) {
-              console.log("response", response.data);
+              //console.log("response", response.data);
             if (response.data.length > 0) {
               $scope.perfiles = response.data;
-              console.log("perfiles", $scope.perfiles);
+              //console.log("perfiles", $scope.perfiles);
             }
           },
           function errorCallback(response) {
@@ -120,6 +104,53 @@ app.controller("gestionarPerfilesCtrl", [
       };
       $scope.ConsultarPerfiles();
 
-      console.log("perfilModel", $scope.perfilModel);
+      // $scope.perfiles = [
+      //   {
+      //       formulario: [
+      //           {
+      //               permisos: [],
+      //               descripcion: "",
+      //               nombre: ""
+      //           }
+      //       ],
+      //       grupo: {
+      //           descripcion: "",
+      //           nombre: ""
+      //       }
+      //   }
+      // ]
+      $scope.perfiles = [
+        {
+            formulario: [],
+            grupo: {}
+        }
+      ]
+      
+      $scope.perfiles
+      console.log("perfiles", $scope.perfiles);
+      $scope.formulariosSelected = [];
+      $scope.permisosSelected = [];
+
+      $scope.toggleFormulario = function(groupIndex, formIndex) {
+        console.log('groupIndex', groupIndex, 'formIndex',formIndex)
+        $scope.formId = groupIndex + '-' + formIndex
+        $scope.formularios[$scope.formId].checked = !$scope.formularios[$scope.formId].checked;
+        // if (!$scope.formularios[index].checked) {
+        //   $scope.selectAll = false;
+        // }
+        console.log('formularios',$scope.formularios)
+      }
+
+      $scope.togglePermiso = function(groupIndex, formIndex, passIndex) {
+        console.log('groupIndex', groupIndex, 'formIndex', formIndex, 'passIndex', passIndex )
+        $scope.passId = groupIndex + '-' + formIndex + '-' + passIndex
+        console.log('$scope.passId', $scope.passId)
+        console.log('permisosSelected',$scope.permisosSelected)
+        $scope.permisos[$scope.passId].checked = !$scope.permisos[$scope.passId].checked;
+        // if (!$scope.permisos[index].checked) {
+        //   $scope.selectAll = false;
+        // }
+        console.log('permisosSelected',$scope.permisosSelected)
+      }
   },
 ]);

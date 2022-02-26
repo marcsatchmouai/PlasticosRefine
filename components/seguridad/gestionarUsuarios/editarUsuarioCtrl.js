@@ -6,8 +6,14 @@ app.controller("editarUsuarioCtrl", [
   "$cookies",
   "Fact",
   "GruposFact",
-  function ($scope, $window, $http, settings, $cookies, Fact, GruposFact) {
+  "consultarGruposService",
+  function ($scope, $window, $http, settings, $cookies, Fact, GruposFact, consultarGruposService) {
     
+    $scope.consultarGruposService = function() {
+      consultarGruposService.getGrupos()
+    }
+    $scope.consultarGruposService()
+
     $scope.grupos = GruposFact.grupos;
     
     $scope.userEdit = Fact;

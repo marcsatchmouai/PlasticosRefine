@@ -16,25 +16,22 @@ app.config(['$routeProvider', function($routeProvider){
             templateUrl: 'components/seguridad/gestionarUsuarios/editarUsuario.html',
             controller: 'editarUsuarioCtrl'
         })
-        .when("/asignarGrupos", {
-            templateUrl: 'components/seguridad/gestionarUsuarios/asignarGrupos.html',
-            controller: 'asignarGruposCtrl'
-        })
-
+        
         .when('/gestionarGrupos', {
             templateUrl: '/components/seguridad/gestionarGrupos/gestionarGrupos.html',
             controller: 'gestionarGruposCtrl'
         })
         .when('/agregarGrupo', {
             templateUrl: '/components/seguridad/gestionarGrupos/agregarGrupo.html',
-            controller: 'asignarGruposCtrl'
+            controller: 'agregarGrupoCtrl'
         })
         .when("/editarGrupo", {
             templateUrl: 'components/seguridad/gestionarGrupos/editarGrupo.html',
             controller: 'editarGrupoCtrl'
         })
+        
         .when("/gestionarPerfiles", {
-            templateUrl: 'components/seguridad/gestionarGrupos/gestionarPerfiles.html',
+            templateUrl: 'components/seguridad/gestionarPerfiles/gestionarPerfiles.html',
             controller: 'gestionarPerfilesCtrl'
         })
         .otherwise({

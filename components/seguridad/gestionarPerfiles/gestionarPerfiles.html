@@ -3,7 +3,8 @@
     <div class="text-center">
       <h1 class="h4 text-gray-900 mb-4">Gestionar Perfiles</h1>
     </div>
-    <div ng-repeat="grupo in grupos">
+    <!-- GRUPO -->
+    <div ng-repeat="grupo in grupos" ng-init="groupIndex=$index">
       <div id="acc{{grupo.nombre}}">
         <div class="card">
           <div class="card-header" id="heading{{grupo.nombre}}">
@@ -14,7 +15,7 @@
                 data-target="#{{grupo.nombre}}"
                 aria-expanded="false"
                 aria-controls="{{grupo.nombre}}"
-                
+                ng-model = "grupo.nombre"
               >
                 Grupo - {{grupo.nombre}}
               </button>
@@ -29,9 +30,8 @@
           >
             <!-- CARD BODY -->
             <div class="card-body">
-              <div
-                ng-repeat="formulario in formularios"
-              >
+              <!-- FORMULARIO -->
+              <div ng-repeat="formulario in formularios" ng-init="formIndex=$index">
                 <div id="acc{{formulario.nombre}}">
                   <div class="card">
                     <div class="card-header" id="heading{{formulario.nombre}}">
@@ -40,8 +40,9 @@
                           id="id-{formulario.nombre}}"
                           class="align-middle"
                           type="checkbox"
-                          ng-checked=""
-                          value=""
+                          ng-model="formulariosSelected[formId]"
+                          ng-value="formulario"
+                          ng-change="toggleFormulario(groupIndex, formIndex)"
                         />
                         <button
                           class="btn btn-link"
@@ -62,17 +63,19 @@
                       data-parent="#acc{{formulario.nombre}}"
                     >
                       <div class="card-body">
+                        <!-- PERMISO -->
                         <div class="list-group">
                           <label
                             class="list-group-item pl-5"
-                            ng-repeat="permiso in permisos"
+                            ng-repeat="permiso in permisos" ng-init="passIndex=$index"
                           >
                             <input
                               id="id-{permiso.nombre}}"
                               class="form-check-input me-1"
                               type="checkbox"
-                              ng-checked=""
-                              value=""
+                              ng-model="permisosSelected[passId]"
+                              ng-value="permiso"
+                              ng-change="togglePermiso(groupIndex, formIndex, passIndex)"
                             />
                             {{permiso.nombre}}
                           </label>

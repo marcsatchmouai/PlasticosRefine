@@ -5,10 +5,11 @@ app.controller("homeCtrl", [
   "settings",
   "$cookies",
   "GruposFact",
-  function ($scope, $window, $http, settings, $cookies, GruposFact) {
+  "consultarGruposService",
+  function ($scope, $window, $http, settings, $cookies, GruposFact, consultarGruposService) {
     
     $scope.Grupos = GruposFact;
-    console.log($scope.Grupos)
+    
     
     $scope.CerrarSesion = function () {
       var userCookie = $cookies.getObject("userLogged");
@@ -37,26 +38,27 @@ app.controller("homeCtrl", [
       );
     };
 
-    $scope.ConsultarGrupos = function () {
-      $http({
-        method: "GET",
-        url:
-          settings.webApiBaseUrl +
-          "api/Seguridad/GestionarUsuarios/ConsultarGrupos",
-        headers: settings.headers,
-      }).then(
-        function successCallback(response) {
-          response.data.map(x => $scope.Grupos.grupos.push(x));
-        },
-        function errorCallback(response) {
-          Swal.fire({
-            icon: "error",
-            title: "Error al intentar consultar usuarios",
-          });
-        }
-      );
-    };
+    // $scope.ConsultarGrupos = function () {
+    //   $http({
+    //     method: "GET",
+    //     url:
+    //       settings.webApiBaseUrl +
+    //       "api/Seguridad/GestionarUsuarios/ConsultarGrupos",
+    //     headers: settings.headers,
+    //   }).then(
+    //     function successCallback(response) {
+    //       $scope.Grupos.grupos = response.data
+    //       console.log($scope.Grupos)
+    //     },
+    //     function errorCallback(response) {
+    //       Swal.fire({
+    //         icon: "error",
+    //         title: "Error al intentar consultar usuarios",
+    //       });
+    //     }
+    //   );
+    // };
 
-    $scope.ConsultarGrupos()
+    //consultarGruposService.getGrupos()
   },
 ]);

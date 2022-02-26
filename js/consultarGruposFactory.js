@@ -1,5 +1,9 @@
 app.factory('GruposFact', function() {
     return {
-        grupos: []
+        grupos: '',
+        groupSelected: {
+            Nombre: '',
+            Descripcion: ''
+        }
     };
 }); 
